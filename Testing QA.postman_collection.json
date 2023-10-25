@@ -1,0 +1,2076 @@
+{
+	"info": {
+		"_postman_id": "c5bb0dfb-011d-4ffe-8455-14cee79cc568",
+		"name": "Testing QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11408009"
+	},
+	"item": [
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Get activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"array\",\r",
+									"    \"default\": [],\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"title\": \"A Schema\",\r",
+									"        \"required\": [\r",
+									"            \"id\",\r",
+									"            \"title\",\r",
+									"            \"dueDate\",\r",
+									"            \"completed\"\r",
+									"        ],\r",
+									"        \"properties\": {\r",
+									"            \"id\": {\r",
+									"                \"type\": \"integer\",\r",
+									"                \"title\": \"The id Schema\",\r",
+									"                \"examples\": [\r",
+									"                    1,\r",
+									"                    2\r",
+									"                ]\r",
+									"            },\r",
+									"            \"title\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"title\": \"The title Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"Activity 1\",\r",
+									"                    \"Activity 2\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"dueDate\": {\r",
+									"                \"type\": \"string\",\r",
+									"                \"title\": \"The dueDate Schema\",\r",
+									"                \"examples\": [\r",
+									"                    \"2023-10-25T09:03:12.4137141+00:00\",\r",
+									"                    \"2023-10-25T10:03:12.4137164+00:00\"\r",
+									"                ]\r",
+									"            },\r",
+									"            \"completed\": {\r",
+									"                \"type\": \"boolean\",\r",
+									"                \"title\": \"The completed Schema\",\r",
+									"                \"examples\": [\r",
+									"                    false,\r",
+									"                    true\r",
+									"                ]\r",
+									"            }\r",
+									"        },\r",
+									"        \"examples\": [{\r",
+									"            \"id\": 1,\r",
+									"            \"title\": \"Activity 1\",\r",
+									"            \"dueDate\": \"2023-10-25T09:03:12.4137141+00:00\",\r",
+									"            \"completed\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"id\": 2,\r",
+									"            \"title\": \"Activity 2\",\r",
+									"            \"dueDate\": \"2023-10-25T10:03:12.4137164+00:00\",\r",
+									"            \"completed\": true\r",
+									"        }]\r",
+									"    },\r",
+									"    \"examples\": [\r",
+									"        [{\r",
+									"            \"id\": 1,\r",
+									"            \"title\": \"Activity 1\",\r",
+									"            \"dueDate\": \"2023-10-25T09:03:12.4137141+00:00\",\r",
+									"            \"completed\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"id\": 2,\r",
+									"            \"title\": \"Activity 2\",\r",
+									"            \"dueDate\": \"2023-10-25T10:03:12.4137164+00:00\",\r",
+									"            \"completed\": true\r",
+									"        }]\r",
+									"    ]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activities details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"title\",\r",
+									"        \"dueDate\",\r",
+									"        \"completed\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                1\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"Activity 1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The dueDate Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"2023-10-25T09:00:11.6042294+00:00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"            \"type\": \"boolean\",\r",
+									"            \"default\": false,\r",
+									"            \"title\": \"The completed Schema\",\r",
+									"            \"examples\": [\r",
+									"                false\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 1,\r",
+									"        \"title\": \"Activity 1\",\r",
+									"        \"dueDate\": \"2023-10-25T09:00:11.6042294+00:00\",\r",
+									"        \"completed\": false\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activities details - Failed - not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.4\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"Not Found\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                404\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-338e85a80dab0e4f99cf68d6b9a9af98-a4fb1983647ffb49-00\"\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\r",
+									"        \"title\": \"Not Found\",\r",
+									"        \"status\": 404,\r",
+									"        \"traceId\": \"00-338e85a80dab0e4f99cf68d6b9a9af98-a4fb1983647ffb49-00\"\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Activities/5555",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"5555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get activities details - Failed - ID on url must be a number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The value 'a' is not valid.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The value 'a' is not valid.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": [\r",
+									"                    \"The value 'a' is not valid.\"]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\",\r",
+									"        \"errors\": {\r",
+									"            \"id\": [\r",
+									"                \"The value 'a' is not valid.\"]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/Activities/a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"title\",\r",
+									"        \"dueDate\",\r",
+									"        \"completed\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                1\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"Activity 1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The dueDate Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"2023-10-25T09:00:11.6042294+00:00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"            \"type\": \"boolean\",\r",
+									"            \"default\": false,\r",
+									"            \"title\": \"The completed Schema\",\r",
+									"            \"examples\": [\r",
+									"                false\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 1,\r",
+									"        \"title\": \"Activity 1\",\r",
+									"        \"dueDate\": \"2023-10-25T09:00:11.6042294+00:00\",\r",
+									"        \"completed\": false\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"title\": \"string\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post activities - Failed - ID must be a number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-9fed7b5f6836db45a436461c41dfd95f-8ff9a03a70c37840-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.id\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.id Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.id\": [\r",
+									"                    \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-9fed7b5f6836db45a436461c41dfd95f-8ff9a03a70c37840-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.id\": [\r",
+									"                \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": a,\r\n  \"title\": \"string\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post activities - Failed - Title must be a string value",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-fae1c1d15af4b14791d46983c0759478-22996feb74e3ab4b-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.title\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.title\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.title Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.title\": [\r",
+									"                    \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-fae1c1d15af4b14791d46983c0759478-22996feb74e3ab4b-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.title\": [\r",
+									"                \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": 3,\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post activities - Failed - Date format is wrong",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-de818eb6adb3114e99cdea1327eb025c-aaef86d9e2b8aa43-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.dueDate\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.dueDate\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.dueDate Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.dueDate\": [\r",
+									"                    \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-de818eb6adb3114e99cdea1327eb025c-aaef86d9e2b8aa43-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.dueDate\": [\r",
+									"                \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test 1\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post activities - Failed - Completed value must be a boolean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"00-443597c8453c9042accf234df748e1eb-9b363df5585e1242-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"$.completed\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.completed\": {\r",
+									"                    \"title\": \"The $.completed Schema\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"examples\": [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.completed\": [\r",
+									"                    \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-443597c8453c9042accf234df748e1eb-9b363df5585e1242-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.completed\": [\r",
+									"                \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test 1\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": asd\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"id\",\r",
+									"        \"title\",\r",
+									"        \"dueDate\",\r",
+									"        \"completed\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"id\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The id Schema\",\r",
+									"            \"examples\": [\r",
+									"                1\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"Activity 1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"dueDate\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The dueDate Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"2023-10-25T09:00:11.6042294+00:00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"completed\": {\r",
+									"            \"type\": \"boolean\",\r",
+									"            \"default\": false,\r",
+									"            \"title\": \"The completed Schema\",\r",
+									"            \"examples\": [\r",
+									"                false\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"id\": 1,\r",
+									"        \"title\": \"Activity 1\",\r",
+									"        \"dueDate\": \"2023-10-25T09:00:11.6042294+00:00\",\r",
+									"        \"completed\": false\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test 1\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities - Failed - ID on url must be a number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The value 'a' is not valid.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The value 'a' is not valid.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": [\r",
+									"                    \"The value 'a' is not valid.\"]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\",\r",
+									"        \"errors\": {\r",
+									"            \"id\": [\r",
+									"                \"The value 'a' is not valid.\"]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test 1\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities - Failed - ID must be a number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-9fed7b5f6836db45a436461c41dfd95f-8ff9a03a70c37840-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.id\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.id Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.id\": [\r",
+									"                    \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-9fed7b5f6836db45a436461c41dfd95f-8ff9a03a70c37840-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.id\": [\r",
+									"                \"'a' is an invalid start of a value. Path: $.id | LineNumber: 1 | BytePositionInLine: 8.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": a,\r\n  \"title\": \"test 1\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities - Failed - Title must be a string value",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-fae1c1d15af4b14791d46983c0759478-22996feb74e3ab4b-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.title\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.title\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.title Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.title\": [\r",
+									"                    \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-fae1c1d15af4b14791d46983c0759478-22996feb74e3ab4b-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.title\": [\r",
+									"                \"The JSON value could not be converted to System.String. Path: $.title | LineNumber: 2 | BytePositionInLine: 12.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": 123,\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities - Failed - Date format is wrong",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    //\"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"examples\": [\r",
+									"                \"00-de818eb6adb3114e99cdea1327eb025c-aaef86d9e2b8aa43-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"required\": [\r",
+									"                \"$.dueDate\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.dueDate\": {\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"title\": \"The $.dueDate Schema\",\r",
+									"                    \"items\": {\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.dueDate\": [\r",
+									"                    \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-de818eb6adb3114e99cdea1327eb025c-aaef86d9e2b8aa43-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.dueDate\": [\r",
+									"                \"The JSON value could not be converted to System.DateTime. Path: $.dueDate | LineNumber: 3 | BytePositionInLine: 19.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test\",\r\n  \"dueDate\": \"2023\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update activities - Failed - Completed value must be boolean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"00-443597c8453c9042accf234df748e1eb-9b363df5585e1242-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"$.completed\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"$.completed\": {\r",
+									"                    \"title\": \"The $.completed Schema\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"examples\": [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"$.completed\": [\r",
+									"                    \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"                ]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-443597c8453c9042accf234df748e1eb-9b363df5585e1242-00\",\r",
+									"        \"errors\": {\r",
+									"            \"$.completed\": [\r",
+									"                \"'a' is an invalid start of a value. Path: $.completed | LineNumber: 4 | BytePositionInLine: 15.\"\r",
+									"            ]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"test\",\r\n  \"dueDate\": \"2023-10-25T07:43:09.110Z\",\r\n  \"completed\": a\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete activities",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Activities/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete activities - Failed - ID on url must be a number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var schema = {\r",
+									"    \"$id\": \"http://example.com/example.json\",\r",
+									"    \"title\": \"Root Schema\",\r",
+									"    \"type\": \"object\",\r",
+									"    \"default\": {},\r",
+									"    \"required\": [\r",
+									"        \"type\",\r",
+									"        \"title\",\r",
+									"        \"status\",\r",
+									"        \"traceId\",\r",
+									"        \"errors\"\r",
+									"    ],\r",
+									"    \"properties\": {\r",
+									"        \"type\": {\r",
+									"            \"title\": \"The type Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"https://tools.ietf.org/html/rfc7231#section-6.5.1\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"title\": {\r",
+									"            \"title\": \"The title Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"One or more validation errors occurred.\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"status\": {\r",
+									"            \"title\": \"The status Schema\",\r",
+									"            \"type\": \"integer\",\r",
+									"            \"default\": 0,\r",
+									"            \"examples\": [\r",
+									"                400\r",
+									"            ]\r",
+									"        },\r",
+									"        \"traceId\": {\r",
+									"            \"title\": \"The traceId Schema\",\r",
+									"            \"type\": \"string\",\r",
+									"            \"default\": \"\",\r",
+									"            \"examples\": [\r",
+									"                \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\"\r",
+									"            ]\r",
+									"        },\r",
+									"        \"errors\": {\r",
+									"            \"title\": \"The errors Schema\",\r",
+									"            \"type\": \"object\",\r",
+									"            \"default\": {},\r",
+									"            \"required\": [\r",
+									"                \"id\"\r",
+									"            ],\r",
+									"            \"properties\": {\r",
+									"                \"id\": {\r",
+									"                    \"title\": \"The id Schema\",\r",
+									"                    \"type\": \"array\",\r",
+									"                    \"default\": [],\r",
+									"                    \"items\": {\r",
+									"                        \"title\": \"A Schema\",\r",
+									"                        \"type\": \"string\",\r",
+									"                        \"default\": \"\",\r",
+									"                        \"examples\": [\r",
+									"                            \"The value 'a' is not valid.\"\r",
+									"                        ]\r",
+									"                    },\r",
+									"                    \"examples\": [\r",
+									"                        [\r",
+									"                            \"The value 'a' is not valid.\"]\r",
+									"                    ]\r",
+									"                }\r",
+									"            },\r",
+									"            \"examples\": [{\r",
+									"                \"id\": [\r",
+									"                    \"The value 'a' is not valid.\"]\r",
+									"            }]\r",
+									"        }\r",
+									"    },\r",
+									"    \"examples\": [{\r",
+									"        \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.1\",\r",
+									"        \"title\": \"One or more validation errors occurred.\",\r",
+									"        \"status\": 400,\r",
+									"        \"traceId\": \"00-6169c26d3c53c941b1d9c33230b6eb0a-3edde8cfe5995d44-00\",\r",
+									"        \"errors\": {\r",
+									"            \"id\": [\r",
+									"                \"The value 'a' is not valid.\"]\r",
+									"        }\r",
+									"    }]\r",
+									"}\r",
+									"\r",
+									"//Validate the response body\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Activities/a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Activities",
+								"a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
